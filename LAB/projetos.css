@@ -1,0 +1,22 @@
+body{
+    background-color: rgb(177, 155, 177);
+    font-family:"Cactus Classical Serif", serif;
+}
+
+h1{
+    text-align: center;
+    font-size: 65px;
+    color: rgb(90, 36, 90);
+}
+
+.tabela{
+    border: 2px solid rgb(90, 36, 90);
+}
+
+.links{
+    color: rgb(90, 36, 90);
+}
+
+.links:hover{
+    color: white;
+}

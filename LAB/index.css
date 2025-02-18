@@ -1,0 +1,35 @@
+body{
+    background-color: rgb(177, 155, 177);
+    font-family:"Cactus Classical Serif", serif;
+}
+
+h1{
+    text-align: center;
+    font-size: 65px;
+    color: rgb(90, 36, 90);
+}
+
+#foto1{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+    border: 2px solid rgb(90, 36, 90);
+    border-radius: 20px;
+}
+
+.links{
+    color: rgb(90, 36, 90);
+}
+
+.links:hover{
+    color: white;
+}
+
+h2{
+    color:rgb(117, 60, 108);
+}
+
+h3{
+    color:rgb(138, 82, 128); 
+}

@@ -1,0 +1,24 @@
+/*tag*/
+p{
+    color: rgb(84, 84, 206);
+    font-size: 18pt;
+}
+
+/*ID - Apenas 1 elemento*/
+#p1{
+    color: rgb(72, 116, 72);
+}
+
+/*classe - Varios elementos*/
+.tag_amarela{
+    color: rgb(202, 202, 48);
+}
+
+/*todo paragrafo que esteja dentro de uma div*/
+div p{
+    color: coral;
+}
+
+.tag_amarela:hover{
+    background-color: rgb(136, 111, 111);
+}

@@ -33,3 +33,12 @@
 .width_200{
     width: 200px;
 }
+
+.display_inline{
+    display: inline;
+}
+
+.display_block{
+    display: block;
+}
+

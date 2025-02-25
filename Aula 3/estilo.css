@@ -1,14 +1,35 @@
 .dotted{
-    border-style: dotted;
+    border: 5px dotted blue;
 }
 
 .dashed{
-    border-style: dashed;
+    border: 5px dashed red;
 }
 
 .solid{
-    border-style: solid;
+    border: 5px solid green;
 }
+
+.radius_10{
+    border-radius: 10px;
+}
+
+.radius_20{
+    border-radius: 20px;
+}
+
+.shadow{
+    box-shadow: 5PX 5PX gray;
+}
+
 .margin{
     margin: 10px;
+}
+
+.padding{
+    padding: 10px;
+}
+
+.width_200{
+    width: 200px;
 }

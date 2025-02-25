@@ -34,3 +34,20 @@ h2{
 h3{
     color:rgb(138, 82, 128); 
 }
+
+#Jiu{
+    margin-left: 800px ;
+    display: inline;
+}
+
+#Hipismo{
+    margin-left: 425px;
+    display: inline;
+}
+
+.video{
+    margin-top: 25px;
+    margin-right: 100px;
+    margin-left: 200px;
+    
+}

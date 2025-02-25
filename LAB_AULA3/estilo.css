@@ -74,5 +74,9 @@ h2{
 }
 
 #iframes{
-    
+    margin: 25px 0px 55px 550px;
+}
+
+#video{
+    margin-right: 75px;
 }

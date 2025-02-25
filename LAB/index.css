@@ -16,6 +16,7 @@ h1{
     width: 20%;
     border: 2px solid rgb(90, 36, 90);
     border-radius: 20px;
+    box-shadow: 5px 5px rgb(155, 95, 155);;
 }
 
 .links{

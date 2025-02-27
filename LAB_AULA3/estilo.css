@@ -41,7 +41,6 @@ h1{
 h2{
     text-align: center;
     font-weight: bold;
-    font-family: sans-serif;
     font-size: 20pt;
 }
 
@@ -79,4 +78,62 @@ h2{
 
 #video{
     margin-right: 75px;
+}
+
+#tabela{
+    border: 4px dashed red;
+    margin-left: 810px;
+    margin-bottom: 45px;    
+}
+
+.td1{
+    border: 1px solid red;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    height: 35px;
+}
+
+.td{
+    border: 1px solid red;
+    text-align: center;
+    width: 205px;
+    height: 35px;
+}
+
+.lista{
+    background-color: yellow;
+    width: 560px;
+    height: 105px;
+    margin-left: 740px;
+    margin-top: 10px;
+}
+
+.sites{
+    margin-left: 80px;
+    color: darkred;
+    font-weight: bold;
+}
+
+.footer{
+    background-color: bisque;
+}
+
+.p1{
+    margin-left: 650px;
+    display: inline;
+    position: relative;
+    top: -50px;
+    font-size: 15pt;
+    font-family: Comic Sans MS;
+}
+
+.html{
+    width: 150px;
+    margin-left: 20px;
+}
+
+.css{
+    width: 125px;
+    margin-left: 750px
 }

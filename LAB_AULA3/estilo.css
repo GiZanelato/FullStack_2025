@@ -5,37 +5,36 @@ body{
 .navbar{
     background-color: bisque;
     border: 2px solid blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #logoC{
     width: 150px;
-    margin-left: 20px;
+    
 }
 
 #logoJava{
     width: 150px;
-    margin-left: 750px
 }
 
 h1{
-    margin-left: 650px;
     color: darkgreen;
-    display: inline;
-    position: relative;
-    top: -50px;
 }
 
 .links{
     background-color: lightskyblue;
-    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nomes_links{
     text-decoration: none;
     font-weight: bold;
     color:darkred;
-    margin-left: 435px;
-    margin-right: -220px;
+    margin: 8px 70px;
 }
 
 h2{

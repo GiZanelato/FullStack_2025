@@ -1,5 +1,5 @@
 #caixa{
-    background-color: blueviolet;
+    background-color: rgb(115, 62, 164);
     color: white;
     padding: 10px 20px 20px 20px;
 }
@@ -31,6 +31,11 @@
     display: flex;
     justify-content: center;
     margin:10px ;
+    color: rgb(44, 93, 146);
+}
+
+#links a{
+    color: rgb(44, 93, 146);
 }
 
 .l1{
@@ -41,10 +46,69 @@
 #links2{
     display: flex;
     justify-content: center;
+    color: rgb(44, 93, 146);
+}
+
+#links2 a{
+    color: rgb(44, 93, 146);
 }
 
 #foto3{
     display: flex;
     justify-content: center;
-    margin:10px ;
+}
+
+.img3{
+    width: 520px;
+}
+
+.container {
+    display: flex; 
+    justify-content: center;
+    margin-bottom: 25px; 
+}
+
+#foto4, #foto5 {
+    display: flex;
+    flex-direction: column;  
+    color: rgb(44, 93, 146);
+    margin-left: 10px;
+}
+
+.img4{
+    width: 315px
+}
+
+div p{
+    margin-top: 3px;
+}
+
+.img5{
+    width: 220px;
+}
+
+.img6{
+    width: 200px;
+    margin-top: 20px;
+}
+
+
+#links3{
+    display: flex;
+    justify-content: center;
+}
+
+#links3 a{
+    color: rgb(44, 93, 146);
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#links4{
+    display: flex;
+    justify-content: center;
+}
+
+#links4 a{
+    color: rgb(44, 93, 146);
 }

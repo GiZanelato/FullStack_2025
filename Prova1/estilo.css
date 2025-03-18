@@ -34,12 +34,7 @@ body{
     margin-right: 12px;
 }
 
-.frase{
-    
-}
-
-
-.caixa{
+.caixas{
     display: flex; 
     justify-content: center;
 }

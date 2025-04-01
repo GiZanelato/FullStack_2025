@@ -1,6 +1,6 @@
 let x = Math.random()*100;
-let valor = Math.floor(x)
-//window.alert(valor) saber valor
+let valor = Math.floor(x);
+window.alert(valor);
 
 
 
@@ -14,11 +14,11 @@ function guess(){
         document.getElementById('resp').style.setProperty("background-color", "green") 
     }
     else if(numero > valor){
-        result = "Número maior"
+        result = "Número menor"
         document.getElementById('resp').style.setProperty("background-color", "red") 
     }
     else{
-        result = "Número menor"
+        result = "Número maior"
         document.getElementById('resp').style.setProperty("background-color", "red") 
     }
 

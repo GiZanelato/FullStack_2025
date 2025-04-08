@@ -80,19 +80,52 @@ class Retangulo{
 let canvas = document.getElementById('canvas1');
 let ctx1 = canvas1.getContext('2d');
 
-let retandulo_1 = new Retangulo('pink', 'white', 3, 0, 0, 20, 20);
-retandulo_1.desenhe(ctx1);
+let retangulo_1 = new Retangulo('pink', 'white', 3, 0, 0, 20, 20);
+let retangulo_2 = new Retangulo('purple', 'pink', 3, 200, 200, 20, 20);
+let retangulo_3 = new Retangulo('orange', 'red', 3, 200, 200, 20, 20);
 
-// retandulo_1.x = 100;  //muda apenas o valor do x
-// retandulo_1.desenhe(ctx1);   //desenha o retangulo 1 novamente mas com o novo valor de x
+
+// retangulo_1.x = 100;  //muda apenas o valor do x
+// retangulo_1.desenhe(ctx1);   //desenha o retangulo 1 novamente mas com o novo valor de x
 
 function animacao(){
-    retandulo_1.x += 1;
+    if(retangulo_1.x == 380){
+        retangulo_1.x = 0;
+    }
+    
+    retangulo_1.x += 1;
+
     ctx1.clearRect(0,0,400,400);
-    retandulo_1.desenhe(ctx1);
+
+    retangulo_1.desenhe(ctx1);
+    retangulo_2.desenhe(ctx1);
+    retangulo_3.desenhe(ctx1);
 
 
     requestAnimationFrame(animacao)
 }
 
 animacao();
+
+document.addEventListener('keydown', function(evento){
+    let tecla = evento.key;
+    console.log(tecla);
+
+    let velocidade = 5;
+    if(tecla == 'ArrowUp'){retangulo_2.y -= velocidade}
+    if(tecla == 'ArrowDown'){retangulo_2.y += velocidade}
+    if(tecla == 'ArrowLeft'){retangulo_2.x -= velocidade}
+    if(tecla == 'ArrowRight'){retangulo_2.x += velocidade}
+})
+
+document.addEventListener('mousemove', function(evento){
+    let rect = canvas1.getBoundingClientRect()
+    let x_mouse = evento.clientX - rect.left;
+    let y_mouse = evento.clientY - rect.top;
+    console.log(x_mouse, y_mouse);
+
+    retangulo_3.x = x_mouse;
+    retangulo_3.y = y_mouse;    
+
+
+})

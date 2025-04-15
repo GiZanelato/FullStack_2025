@@ -3,7 +3,7 @@ let ctx = canvas.getContext('2d');
 
 // imagem
 let dog = new Image();
-dog.src = '../lab 8/imagens/dog.png';
+dog.src = '../lab8/imagens/dog.png';
 
 // Posição inicial da imagem
 let x = canvas.width / 2;

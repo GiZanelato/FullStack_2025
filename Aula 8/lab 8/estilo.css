@@ -5,3 +5,9 @@ body{
 #canvas1{
     background-color: rgb(14, 107, 161);
 }   
+
+.Animação{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

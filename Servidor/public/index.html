@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Servidor</title>
+        <link rel="stylesheet" href="estilo.css">
+    </head>
+    <body>
+        <h1>Servidor rodando...</h1>
+
+        <h2>Exemplo de GET</h2>
+        <form method="get" action="/inicio">
+            <input type="text" name="Nome">
+            <input type="submit" value="Clique aqui para GET!">
+        </form>
+
+        <h2>Exemplo de POST</h2>
+        <form  method="post" action="/inicio">
+            <input type="submit" value="Clique aqui para POST!">
+        </form>
+        
+        <h2>Exemplo de metodos e ações em um único formulário</h2>
+        <form>
+            <input type="submit" value="Botão de GET /inicio" formmethod="get" formaction="/inicio">
+            <input type="submit" value="Botão de POST /inicio" formmethod="post" formaction="/inicio">
+        </form>
+
+        <h2>Cadastro de usuário</h2>
+        <form method="post" action="/cadastrar">
+            <p>Nome: <input type="text" name="Nome"></p>
+            <p>Login: <input type="text" name="Login"></p>
+            <p>Senha:  <input type="password" name="Senha"></p>
+            <p>Data de Nascimento:  <input type="date" name="Nascimento"></p>
+            <input type="submit" value="cadastrar!">
+        </form>
+    </body>
+</html>

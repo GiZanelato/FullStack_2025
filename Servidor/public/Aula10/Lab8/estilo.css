@@ -1,0 +1,27 @@
+body{
+    background-color: rgb(148, 192, 179);
+}
+
+div{
+    display: flex;
+    justify-content: center;
+}
+
+.cadastro{
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    color: rgb(8, 73, 50);
+}
+.Login{
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    color: rgb(8, 73, 50);
+}
+
+.botão{
+    display: flex;
+    justify-content: space-evenly;
+    height: 25px;
+}

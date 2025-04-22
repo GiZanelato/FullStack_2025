@@ -17,6 +17,10 @@ console.log("Servidor rodando ...".rainbow);
 
 // Métodos e actions
 
+app.get("/", function(requisicao,resposta){    // ir direto para a pagina home ao acessar o localhost
+    resposta.redirect("GIOVANNA/index.html")
+})
+
 app.get("/inicio", function(requisicao, resposta){
     resposta.redirect("GIOVANNA/index.html")
 })
@@ -46,4 +50,23 @@ app.post("/cadastrar",function(requisicao,resposta){
     console.log(Nome, Login, Senha, Nasc);
 
     resposta.render("resposta",{Nome, Login, Senha, Nasc});
+})
+
+app.get("/for_ejs", function(requisicao,resposta){
+    let valor = requisicao.query.valor;
+    resposta.render("exemplo_for",{valor});
+})
+
+
+////////////////////////////////////////////////////////////
+//lab 8:
+app.post("/cadastra", function(requisicao,resposta){
+    let Nome = requisicao.body.Nome;
+    let Login = requisicao.body.Login;
+    let Senha = requisicao.body.Senha;
+    let Nasc = requisicao.body.Nascimento;
+
+    console.log(Nome, Login, Senha, Nasc);
+
+    resposta.render("resposta_lab8",{Nome, Login, Senha, Nasc});
 })

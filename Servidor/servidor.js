@@ -10,6 +10,8 @@ app.use(bodyParser.json())
 app.set('view engine', 'ejs')
 app.set('views', './views');
 
+let usuarios = [];  // Array para armazenar os cadastros
+
 var server = http.createServer(app);
 server.listen(80);
 
@@ -60,13 +62,34 @@ app.get("/for_ejs", function(requisicao,resposta){
 
 ////////////////////////////////////////////////////////////
 //lab 8:
-app.post("/cadastra", function(requisicao,resposta){
+
+app.post("/cadastra", function(requisicao, resposta){
     let Nome = requisicao.body.Nome;
     let Login = requisicao.body.Login;
     let Senha = requisicao.body.Senha;
     let Nasc = requisicao.body.Nascimento;
 
-    console.log(Nome, Login, Senha, Nasc);
+    // Armazena os dados no array
+    usuarios.push({ Nome, Login, Senha, Nasc });
 
-    resposta.render("resposta_lab8",{Nome, Login, Senha, Nasc});
-})
+    console.log("Usuário cadastrado:", { Nome, Login, Senha, Nasc });
+
+    resposta.redirect("login.html");  
+});
+
+app.post("/logar", function(requisicao, resposta) {
+    let login = requisicao.body.Login;
+    let senha = requisicao.body.Senha;
+
+    // Procura o usuário no array
+    let usuario = usuarios.find(u => u.Login === login && u.Senha === senha);
+
+    let status;
+    if (usuario) {
+        status = "Login realizado com sucesso. Bem-vindo(a), ${usuario.Nome}!";
+    } else {
+        status = "Login falhou. Usuário ou senha incorretos.";
+    }
+
+    resposta.render("respostas_lab8", { status });
+});

@@ -2,14 +2,14 @@ require("colors");
 var http = require("http");
 var express = require("express");
 var bodyParser = require("body-parser")
-// var mongodb = require("mongodb");
+var mongodb = require("mongodb");
 
-// const MongoClient = mongodb.MongoClient;
-// const uri = 'mongodb+srv://uniegzanelato:@uniezanelato2025@aulabd.pluijcv.mongodb.net/?retryWrites=true&w=majority&appName=AulaBD'
-// const client = new MongoClient(uri, { useNewUrlParser: true });
+const MongoClient = mongodb.MongoClient;
+const uri = 'mongodb+srv://uniegzanelato:eudnTy7DN9K9LcAd@aulabd.pluijcv.mongodb.net/?retryWrites=true&w=majority&appName=AulaBD'
+const client = new MongoClient(uri, { useNewUrlParser: true });
 
-// var dbo = client.db("AulaBD");
-// var usuarios = dbo.createCollection("usuarios",);
+var dbo = client.db("AulaBD");
+var usuario = dbo.collection("usuario");
 
 var app = express();
 app.use(express.static('./public'));
@@ -25,7 +25,7 @@ server.listen(80);
 
 console.log("Servidor rodando ...".rainbow);
 
-// Métodos e actions
+// Métodos e actions:
 
 app.get("/", function(requisicao,resposta){    // ir direto para a pagina home ao acessar o localhost
     resposta.redirect("GIOVANNA/index.html")
@@ -61,18 +61,42 @@ app.post("/cadastrar",function(requisicao,resposta){
 
     var data = { db_nome: Nome, db_login: Login, db_senha: Senha, db_nasc: Nasc };
 
-    usuarios.insertOne(data, function(err){
-        console.log(err)
-        if (err){
-            resp.render('resposta', {resposta: "Erro ao cadastrar usuário!"})
+    usuario.insertOne(data, function(err){
+        if(err){
+            resposta.render("resposta", {status: "Erro", Nome, Login, Senha, Nasc});
         }
-        else {
-            resp.render('resposta', {resposta: "Usuário cadastrado com sucesso!"})  
+        else{
+            resposta.render("resposta", {status: "Sucesso", Nome,Login,Senha,Nasc});
         }
 
     })
 
-    resposta.render("resposta",{Nome, Login, Senha, Nasc});
+})
+
+app.post('/logar2', function(requisicao,resposta){
+    let Login = requisicao.body.Login;
+    let Senha = requisicao.body.Senha;
+    console.log(Login, Senha);
+
+    var data = {db_login: Login, db_senha: Senha};
+
+    usuario.find(data).toArray(function(err, items){
+        console.log(items)
+        if(err){
+            //erro ao logar
+            resposta.render("resposta_login",{status: "erro ao logar"});
+
+        }
+        else if(items.length == 0){
+            //não encontrou usuario
+           resposta.render("resposta_login",{status: "usuario/senha não encontrado"});
+
+        }
+        else{
+            //usuario encontrado
+            resposta.render("resposta_login",{status: "usuario "+Login+" logado"});
+        }
+    })
 })
 
 app.get("/for_ejs", function(requisicao,resposta){
@@ -116,3 +140,6 @@ app.post("/logar", function(requisicao, resposta) {
 
     resposta.render("resposta_lab8", { status });
 });
+
+////////////////////////////////////////////////////////////
+// Lab 9:

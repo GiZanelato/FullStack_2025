@@ -1,7 +1,15 @@
 require("colors");
 var http = require("http");
 var express = require("express");
-let bodyParser = require("body-parser")
+var bodyParser = require("body-parser")
+// var mongodb = require("mongodb");
+
+// const MongoClient = mongodb.MongoClient;
+// const uri = 'mongodb+srv://uniegzanelato:@uniezanelato2025@aulabd.pluijcv.mongodb.net/?retryWrites=true&w=majority&appName=AulaBD'
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+
+// var dbo = client.db("AulaBD");
+// var usuarios = dbo.createCollection("usuarios",);
 
 var app = express();
 app.use(express.static('./public'));
@@ -51,6 +59,19 @@ app.post("/cadastrar",function(requisicao,resposta){
 
     console.log(Nome, Login, Senha, Nasc);
 
+    var data = { db_nome: Nome, db_login: Login, db_senha: Senha, db_nasc: Nasc };
+
+    usuarios.insertOne(data, function(err){
+        console.log(err)
+        if (err){
+            resp.render('resposta', {resposta: "Erro ao cadastrar usuário!"})
+        }
+        else {
+            resp.render('resposta', {resposta: "Usuário cadastrado com sucesso!"})  
+        }
+
+    })
+
     resposta.render("resposta",{Nome, Login, Senha, Nasc});
 })
 
@@ -74,7 +95,9 @@ app.post("/cadastra", function(requisicao, resposta){
 
     console.log("Usuário cadastrado:", { Nome, Login, Senha, Nasc });
 
-    resposta.redirect("login.html");  
+
+    resposta.redirect("/Aula10/Lab8/login.html");
+
 });
 
 app.post("/logar", function(requisicao, resposta) {
@@ -86,10 +109,10 @@ app.post("/logar", function(requisicao, resposta) {
 
     let status;
     if (usuario) {
-        status = "Login realizado com sucesso. Bem-vindo(a), ${usuario.Nome}!";
+        status = "Login realizado com sucesso. Bem-vindo(a)!";
     } else {
         status = "Login falhou. Usuário ou senha incorretos.";
     }
 
-    resposta.render("respostas_lab8", { status });
+    resposta.render("resposta_lab8", { status });
 });

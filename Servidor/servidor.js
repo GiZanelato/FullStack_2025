@@ -4,12 +4,15 @@ var express = require("express");
 var bodyParser = require("body-parser")
 var mongodb = require("mongodb");
 
+
 const MongoClient = mongodb.MongoClient;
 const uri = 'mongodb+srv://uniegzanelato:eudnTy7DN9K9LcAd@aulabd.pluijcv.mongodb.net/?retryWrites=true&w=majority&appName=AulaBD'
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 var dbo = client.db("AulaBD");
 var usuario = dbo.collection("usuario");
+var posts = dbo.collection("posts");
+
 
 var app = express();
 app.use(express.static('./public'));
@@ -143,3 +146,67 @@ app.post("/logar", function(requisicao, resposta) {
 
 ////////////////////////////////////////////////////////////
 // Lab 9:
+
+app.get("/blog", function(req, resp) {
+    posts.find().toArray(function(err, items) {
+        if (err) {
+            resp.send("Erro ao buscar os posts.");
+        } else {
+            console.log(items); // apenas para debug
+            resp.render("blog", { posts: items });
+        }
+    });
+});
+
+
+app.get("/criar_post", function(requisicao,resposta){   
+    resposta.redirect("../Aula11/Lab9/cadastrar_post.html")
+})
+
+app.post("/cadastrar_post",function(requisicao,resposta){
+    let titulo = requisicao.body.titulo;
+    let resumo = requisicao.body.resumo;
+    let conteudo = requisicao.body.conteudo;
+   
+
+    console.log(titulo, resumo, conteudo);
+
+    var data = { db_titulo: titulo, db_resumo: resumo, db_conteudo: conteudo};
+
+    posts.insertOne(data, function(err){
+        if(err){
+            resposta.render("resposta_lab9", {status: "erro", titulo, resumo, conteudo});
+        }
+        else{
+            resposta.render("resposta_lab9", {status: "sucesso", titulo, resumo, conteudo});
+        }
+
+    })
+
+})
+
+
+
+
+//////////////////////////////////////////////////////////////
+app.post('/atualizar_senha', function(requisicao,resposta){
+    let login = requisicao.body.Login;
+    let senha = requisicao.body.Senha;
+    let novasenha = requisicao.body.novasenha;
+
+    let data = {db_login: Login, db_senha: Senha}
+    let new_data = {$set : {db_senha : novasenha}}
+
+    usuarios.updateOne(data, new_data, function (err, result) {
+        console.log(result);
+
+        if (result.modifiedCount == 0) {
+          resp.render('resposta_login', {resposta: "Usuário/senha não encontrado!"})
+        }else if (err) {
+          resp.render('resposta_login', {resposta: "Erro ao atualizar usuário!"})
+        }else {
+          resp.render('resposta_login', {resposta: "Usuário atualizado com sucesso!"})        
+        };
+      });
+  
+})

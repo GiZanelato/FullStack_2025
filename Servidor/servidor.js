@@ -12,6 +12,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 var dbo = client.db("AulaBD");
 var usuario = dbo.collection("usuario");
 var posts = dbo.collection("posts");
+var usuario_carros = dbo.collection("usuario_carros");
 
 
 var app = express();
@@ -210,3 +211,33 @@ app.post('/atualizar_senha', function(requisicao,resposta){
       });
   
 })
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+//Lab10:
+
+
+app.post("/cadastrar_usuario",function(requisicao,resposta){
+    let nome = requisicao.body.nome;
+    let login = requisicao.body.login;
+    let senha = requisicao.body.senha;
+
+
+    console.log(nome, login, senha);
+
+    var data = { db_nome: nome, db_login: login, db_senha: senha };
+
+    usuario_carros.insertOne(data, function(err){
+        if(err){
+            resposta.render("resposta_carros", {status: "erro", nome, login, senha});
+        }
+        else{
+            resposta.render("resposta_carros", {status: "sucesso", nome,login,senha});
+        }
+
+    })
+
+})
+
+

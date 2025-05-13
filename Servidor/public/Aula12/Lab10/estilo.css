@@ -1,0 +1,86 @@
+body{
+    background-color: rgb(153, 179, 146);
+}
+
+#item_lista{
+    background-color: whitesmoke;
+    padding: 10px;
+    margin: 10px;
+}
+
+a{
+    color: rgb(8, 54, 8);
+}
+
+h1{
+    text-align: center;
+    color: rgb(8, 54, 8);
+}
+
+
+.atualizacao{
+    display: flex;
+    justify-content: center;
+}
+
+.atualizacao input{
+    margin-bottom: 15px;
+}
+
+
+.atualizacao-antigo{
+    display: flex;
+    flex-direction: column;
+    margin-right: 70px;
+}
+
+.atualizacao-novo{
+    display: flex;
+    flex-direction: column;
+}
+
+.botao{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.Cadastrar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Cadastrar input{
+    margin-bottom: 15px;
+}
+
+.carro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.carro input{
+    margin-bottom: 15px;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login input{
+    margin-bottom: 15px;
+}
+
+.remover{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.remover input{
+    margin-bottom: 15px;
+}

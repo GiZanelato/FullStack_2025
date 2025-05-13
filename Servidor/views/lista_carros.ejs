@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Carro</title>
+        <link rel="stylesheet" href="Aula12/Lab10/estilo.css">
+    </head>
+    <body>
+
+        <a href="/lista_carros">Listar Carros</a>
+        |
+
+        <a href="Aula12/Lab10/Projects.html">Cadastrar usuario</a>
+        |
+        <a href="Aula12/Lab10/login.html">Logar</a>
+        |
+        <a href="Aula12/Lab10/carro.html">Cadastrar carro</a>
+        |
+        <a href="Aula12/Lab10/atualizacao.html">Atualizar Carro</a>
+        |
+        <a href="Aula12/Lab10/remocao.html">Remover Carro</a>
+
+
+    <h1>Lista de Carros atual:</h1>
+    
+    <%for (var i = 0; i < usuarios.length; i++){%>
+    <div id="item_lista">
+        <p>Marca: <%= usuarios[i].db_marca %></p>
+        <p>Modelo: <%= usuarios[i].db_modelo %></p>
+        <p>Ano: <%= usuarios[i].db_ano %></p>
+        <p>Qtde_disponivel: <%= usuarios[i].db_qtde %></p>
+        <br>
+    </div>
+    <%}%>
+    
+    
+    </body>
+</html>

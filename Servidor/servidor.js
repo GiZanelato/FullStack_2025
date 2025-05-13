@@ -13,6 +13,7 @@ var dbo = client.db("AulaBD");
 var usuario = dbo.collection("usuario");
 var posts = dbo.collection("posts");
 var usuario_carros = dbo.collection("usuario_carros");
+var carros = dbo.collection("carros");
 
 
 var app = express();
@@ -217,27 +218,104 @@ app.post('/atualizar_senha', function(requisicao,resposta){
 
 //Lab10:
 
+app.post("/cadastrar_usuario", function(req, resp) {
 
-app.post("/cadastrar_usuario",function(requisicao,resposta){
-    let nome = requisicao.body.nome;
-    let login = requisicao.body.login;
-    let senha = requisicao.body.senha;
+    let data = { db_nome: req.body.nome, db_login: req.body.login, db_senha: req.body.senha };
+
+    // salva dados no banco
+    usuario_carros.insertOne(data, function (err) {
+      if (err) {
+        resp.render('resposta_usuario.ejs', {resposta: "Erro ao cadastrar usuário!"})
+      }else {
+        resp.render('resposta_usuario.ejs', {resposta: "Usuário cadastrado com sucesso!"})        
+      };
+    });
+
+});
 
 
-    console.log(nome, login, senha);
+app.post("/logar_usuario", function(req, resp) {
 
-    var data = { db_nome: nome, db_login: login, db_senha: senha };
+    let data = {db_login: req.body.login, db_senha: req.body.senha };
 
-    usuario_carros.insertOne(data, function(err){
-        if(err){
-            resposta.render("resposta_carros", {status: "erro", nome, login, senha});
-        }
-        else{
-            resposta.render("resposta_carros", {status: "sucesso", nome,login,senha});
-        }
+    // busca um usuário no banco de dados
+    usuario_carros.find(data).toArray(function(err, items) {
+        console.log(items);
+        if (items.length == 0) {
+          resp.render('resposta_usuario.ejs', {resposta: "Usuário/senha não encontrado!"})
+        }else if (err) {
+          resp.render('resposta_usuario.ejs', {resposta: "Erro ao logar usuário!"})
+        }else {
+          resp.render('resposta_usuario.ejs', {resposta: "Usuário logado com sucesso!"})        
+        };
+      });
 
-    })
+});
 
-})
+
+app.post("/cadastrar_carro", function(req, resp) {
+
+    let data = { db_marca: req.body.marca, db_modelo: req.body.modelo, db_ano: req.body.ano, db_qtde: req.body.qtde};
+
+    // salva dados no banco
+    carros.insertOne(data, function (err) {
+      if (err) {
+        resp.render('resposta_carros.ejs', {resposta: "Erro ao cadastrar carro!"})
+      }else {
+        resp.render('resposta_carros.ejs', {resposta: "Carro cadastrado com sucesso!"})        
+      };
+    });
+
+});
+
+app.post("/atualizar_carro", function(req, resp) {
+
+    let data = { db_marca: req.body.marca, db_modelo: req.body.modelo, db_ano: req.body.ano, db_qtde: req.body.qtde};
+    let newData = { $set: {db_marca: req.body.novamarca, db_modelo: req.body.novomodelo, db_ano: req.body.novoano, db_qtde: req.body.novaqtde} };
+
+    // atualiza informações do carro
+    carros.updateOne(data, newData, function (err, result) {
+          console.log(result);
+          if (result.modifiedCount == 0) {
+            resp.render('resposta_carros.ejs', {resposta: "Carro não encontrado!"})
+          }else if (err) {
+            resp.render('resposta_carros.ejs', {resposta: "Erro ao atualizar carro!"})
+          }else {
+            resp.render('resposta_carros.ejs', {resposta: "Carro atualizado com sucesso!"})        
+          };
+    });
+
+});
+
+
+app.post("/remover_carro", function(req, resp) {
+
+    let data = { db_marca: req.body.marca, db_modelo: req.body.modelo, db_ano: req.body.ano, db_qtde: req.body.qtde};
+
+    // remove carro
+    carros.deleteOne(data, function (err, result) {
+        console.log(result);
+        if (result.deletedCount == 0) {
+          resp.render('resposta_carros.ejs', {resposta: "Carro não encontrado!"})
+        }else if (err) {
+          resp.render('resposta_carros.ejs', {resposta: "Erro ao remover carro!"})
+        }else {
+          resp.render('resposta_carros.ejs', {resposta: "Carro removido com sucesso!"})        
+        };
+      });
+});
+
+
+app.get("/lista_carros", function(req, resp) {
+
+    // busca todos os usuarios no banco de dados
+    carros.find().toArray(function(err, items) {
+        // renderiza a resposta para o navegador
+        resp.render("lista_carros.ejs", { usuarios: items });
+      });
+
+});
+
+
 
 

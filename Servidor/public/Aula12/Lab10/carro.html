@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Carros</title>
+        <link rel="stylesheet" href="estilo.css">
+    </head>
+    <body>
+        <a href="/lista_carros">Listar Carros</a>
+        |
+
+        <a href="Projects.html">Cadastrar usuario</a>
+        |
+        <a href="login.html">Logar</a>
+        |
+        <a href="carro.html">Cadastrar carro</a>
+        |
+        <a href="atualizacao.html">Atualizar Carro</a>
+        |
+        <a href="remocao.html">Remover Carro</a>
+
+    <h1>Cadastrar Carro!</h1>
+
+    <form action="/cadastrar_carro" method="post">
+        <div class="carro">
+            Marca: <input type="text" name="marca" >
+            Modelo: <input type="text" name="modelo">
+            Ano: <input type="number" name="ano">
+            Qtde disponivel: <input type="number" name="qtde"> 
+        </div>
+
+        <div class="botao">
+            <input type="submit" value="Enviar">   
+        </div>
+    </form>
+
+    </body>
+</html>

@@ -316,6 +316,33 @@ app.get("/lista_carros", function(req, resp) {
 
 });
 
+app.post("/vender_carro", function(req, resp) {
+    let filtro = {
+        db_marca: req.body.marca,
+        db_modelo: req.body.modelo,
+        db_ano: req.body.ano
+    };
+
+    // Primeiro busca o carro atual
+    carros.findOne(filtro, function(err, carro) {
+        if (err || !carro) {
+            resp.render('resposta_carros.ejs', {resposta: "Erro: carro não encontrado."});
+        } else if (carro.db_qtde <= 0) {
+            resp.render('resposta_carros.ejs', {resposta: "Carro esgotado!"});
+        } else {
+            // Atualiza: decrementa a quantidade
+            carros.updateOne(filtro, { $inc: { db_qtde: -1 } }, function(err2, result) {
+                if (err2) {
+                    resp.render('resposta_carros.ejs', {resposta: "Erro ao vender carro."});
+                } else {
+                    resp.redirect("/lista_carros");
+                }
+            });
+        }
+    });
+});
+
+
 
 
 

@@ -7,6 +7,12 @@
     </head>
     <body>
 
+        <% if (typeof mensagem !== 'undefined') { %>
+            <div id="mensagem" style="background-color: #e0ffe0; padding: 10px; border: 1px solid #00aa00; margin-bottom: 20px;">
+              <%= mensagem %>
+            </div>
+          <% } %>
+
         <a href="/lista_carros">Listar Carros</a>
         |
 

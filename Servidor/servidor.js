@@ -311,7 +311,52 @@ app.get("/lista_carros", function(req, resp) {
     // busca todos os usuarios no banco de dados
     carros.find().toArray(function(err, items) {
         // renderiza a resposta para o navegador
-        resp.render("lista_carros.ejs", { usuarios: items });
+        resp.render("lista_carros.ejs", { carros: items });
       });
 
+});
+
+app.post("/vender_carro", function(req, resp) {
+  const marca = req.body.marca;
+  const modelo = req.body.modelo;
+  const ano = req.body.ano;
+
+  const filtro = { db_marca: marca, db_modelo: modelo, db_ano: ano };
+
+  carros.findOne(filtro, function(err, carro) {
+    if (err || !carro) {
+      return resp.render('resposta_carros.ejs', {resposta: "Carro não encontrado!"});
+    }
+  
+    const qntAtual = parseInt(carro.db_qtde);
+  
+    if (qntAtual <= 0) {
+      return resp.render('resposta_carros.ejs', {resposta: "Carro esgotado!"});
+    }
+  
+    if (qntAtual === 1) {
+      carros.deleteOne(filtro, function(err, result) {
+        if (err || result.deletedCount === 0) {
+          return resp.render('resposta_carros.ejs', {resposta: "Erro ao remover carro esgotado!"});
+        }
+  
+        carros.find().toArray(function(err, items) {
+          resp.render('lista_carros.ejs', {carros: items, mensagem: "Carro vendido! Estoque esgotado, anúncio removido."});
+        });
+      });
+    } else {
+      const novaQnt = qntAtual - 1;
+  
+      carros.updateOne(filtro, { $set: { db_qtde: novaQnt } }, function(err, result) {
+        if (err || result.modifiedCount === 0) {
+          return resp.render('resposta_carros.ejs', {resposta: "Erro ao vender o carro!"});
+        }
+  
+        carros.find().toArray(function(err, items) {
+          resp.render('lista_carros.ejs', {carros: items, mensagem: "Carro vendido com sucesso!"});
+        });
+      });
+    }
+  });
+  
 });

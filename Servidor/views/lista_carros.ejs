@@ -23,24 +23,22 @@
 
     <h1>Lista de Carros atual:</h1>
     
-   <% for (var i = 0; i < usuarios.length; i++) { %>
+   <% for (var i = 0; i < carros.length; i++) { %>
     <div id="item_lista">
-        <p>Marca: <%= usuarios[i].db_marca %></p>
-        <p>Modelo: <%= usuarios[i].db_modelo %></p>
-        <p>Ano: <%= usuarios[i].db_ano %></p>
-        <p>Qtde_disponivel: <%= usuarios[i].db_qtde %></p>
-
-        <% if (usuarios[i].db_qtde > 0) { %>
-            <form action="/vender_carro" method="POST">
-                <input type="hidden" name="marca" value="<%= usuarios[i].db_marca %>">
-                <input type="hidden" name="modelo" value="<%= usuarios[i].db_modelo %>">
-                <input type="hidden" name="ano" value="<%= usuarios[i].db_ano %>">
-                <button type="submit">Vender</button>
-            </form>
-        <% } else { %>
-            <p style="color:red;"><strong>Esgotado</strong></p>
-        <% } %>
+        <p>Marca: <%= carros[i].db_marca %></p>
+        <p>Modelo: <%= carros[i].db_modelo %></p>
+        <p>Ano: <%= carros[i].db_ano %></p>
+        <p>Qtde_disponivel: <%= carros[i].db_qtde %></p>
         <br>
+
+        <form action="/vender_carro" method="post">
+            <input type="hidden" name="marca" value="<%= carros[i].db_marca %>">
+            <input type="hidden" name="modelo" value="<%= carros[i].db_modelo %>">
+            <input type="hidden" name="ano" value="<%= carros[i].db_ano %>">
+            <input type="hidden" name="qtde" value="<%= carros[i].db_qtde %>">
+            <input type="submit" value="Vender">
+        </form>
+        
     </div>
 <% } %>
 
